@@ -5,6 +5,20 @@
   //
   // TODO: build the swim command fetcher here
   //
+  const ajaxFetchSwimCommand = () => {
+    //do something
+    $.ajax({
+      type: 'GET',
+      url: 'http://127.0.0.1:3000',
+      dataType: 'json',
+      success: (data) => {
+        console.log(data);
+        // reload the page
+        window.location = window.location.href;
+      },
+      error: () => console.log('error')
+    });
+  }
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -17,7 +31,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: 'http://127.0.0.1:3000',
       cache: false,
       contentType: false,
       processData: false,
