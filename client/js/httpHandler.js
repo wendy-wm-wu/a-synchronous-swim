@@ -12,7 +12,10 @@
       url: serverUrl,
       dataType: 'json',
       success: (data) => {
-        console.log( data);
+        console.log(data);
+        for (let i = 0; i < data.messageQueue.length; i++) {
+          SwimTeam.move(data.messageQueue[i]);
+        }
         // reload thepage
         // window.location = window.location.href;
       },
@@ -20,7 +23,7 @@
     });
   }
 
-  setInterval(ajaxFetchSwimCommand, 1000);
+  setInterval(ajaxFetchSwimCommand, 100);
 
 
   /////////////////////////////////////////////////////////////////////
