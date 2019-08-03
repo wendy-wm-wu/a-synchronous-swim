@@ -21,6 +21,9 @@ module.exports.router = (req, res, next = ()=>{}) => {
       fs.readFile('/Users/student/code/hrsf122-a-synchronous-swim/server/spec/water-lg.jpg', function(err, fileData) {
         if (err) throw error;
         res.write(fileData);
+        res.end();
+
+
         // let file = multipart.getFile(fileData);
         // fs.writeFile(module.exports.backgroundImageFile, file.data, function(err) {
         //   if (err) throw err;
@@ -28,7 +31,7 @@ module.exports.router = (req, res, next = ()=>{}) => {
         // });
       });
       res.writeHead(200, headers);
-      res.end();
+
 
     } else if (req.url === '/swim') {
       res.writeHead(200, headers);

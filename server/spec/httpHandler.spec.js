@@ -55,6 +55,16 @@ describe('server responses', () => {
 
   var postTestFile = path.join('.', 'spec', 'water-lg.jpg');
 
+  it('should respond to a POST request', (done) => {
+    let {req, res} = server.mock('/', 'POST');
+
+    httpHandler.router(req, res);
+    expect(res._responseCode).to.equal(200);
+    expect(res._ended).to.equal(true);
+
+    done();
+  });
+
   xit('should respond to a POST request to save a background image', (done) => {
     fs.readFile(postTestFile, (err, fileData) => {
       httpHandler.backgroundImageFile = path.join('.', 'spec', 'temp.jpg');
