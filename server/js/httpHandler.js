@@ -15,16 +15,22 @@ module.exports.initialize = (queue) => {
 
 module.exports.router = (req, res, next = ()=>{}) => {
   // console.log('Serving request type ' + req.method + ' for url ' + req.url);
-  res.writeHead(200, headers);
-  if (req.method === 'GET') {
+  fs.readFile('/Users/student/code/hrsf122-a-synchronous-swim/server/background.jpg', function(err, data) {
+    if (err) throw err;
+    res.writeHead(200, {'Content-Type': 'image/jpg'});
+    res.write(data);
     res.end(JSON.stringify({messageQueue: messageQueue}));
-    //empty the queue
     while (messageQueue.length > 0) {
       messageQueueModule.dequeue();
     }
-  } else {
-    res.end();
-  }
+  });
+  // res.writeHead(200, headers);
+  // if (req.method === 'GET') {
+
+
+  // } else {
+  //   res.end();
+  // }
 
 
   next(); // invoke next() at the end of a request to help with testing!
