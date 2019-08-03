@@ -26,9 +26,6 @@ const logKeypress = (key) => {
 
 var message = ''; // a buffer to collect key presses
 
-//grab messageQueue
-const messageQueue = require('./messageQueue.js');
-
 module.exports.initialize = (callback) => {
 
   // setup an event handler on standard input

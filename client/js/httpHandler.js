@@ -9,16 +9,19 @@
     //do something
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:3000',
+      url: serverUrl,
       dataType: 'json',
       success: (data) => {
-        console.log(data);
-        // reload the page
-        window.location = window.location.href;
+        console.log( data);
+        // reload thepage
+        // window.location = window.location.href;
       },
       error: () => console.log('error')
     });
   }
+
+  setInterval(ajaxFetchSwimCommand, 1000);
+
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!

@@ -1,9 +1,9 @@
-const messageQueue = require('./messageQueue.js');
+const messageQueue = require('./js/messageQueue.js');
 
 const keypressHandler = require('./js/keypressHandler');
-keypressHandler.initialize(message => messageQueue.enqueue(message)));
+keypressHandler.initialize(message => messageQueue.enqueue(message));
 
-const httpHandler = require('./js/httpHandler');
+const httpHandler = require('./js/httpHandler.js');
 
 
 const http = require('http');
