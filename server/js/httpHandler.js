@@ -15,22 +15,30 @@ module.exports.initialize = (queue) => {
 
 module.exports.router = (req, res, next = ()=>{}) => {
   // console.log('Serving request type ' + req.method + ' for url ' + req.url);
-  fs.readFile('/Users/student/code/hrsf122-a-synchronous-swim/server/background.jpg', function(err, data) {
-    if (err) throw err;
-    res.writeHead(200, {'Content-Type': 'image/jpg'});
-    res.write(data);
-    res.end(JSON.stringify({messageQueue: messageQueue}));
+
+  //gets picture
+  // fs.readFile('/Users/student/code/hrsf122-a-synchronous-swim/server/background.jpg', function(err, data) {
+  //   if (err) throw err;
+  //   console.log(req);
+  //   res.writeHead(200, headers);
+  //   res.write(data);
+  //   res.end();
+  // });
+  //above gets picture
+
+  //below moves swimmers
+  res.writeHead(200, headers);
+  if (req.method === 'GET') {
+    res.write(JSON.stringify({messageQueue: messageQueue}))
+    res.end();
+    //empty the queue
     while (messageQueue.length > 0) {
       messageQueueModule.dequeue();
     }
-  });
-  // res.writeHead(200, headers);
-  // if (req.method === 'GET') {
-
-
-  // } else {
-  //   res.end();
-  // }
+  } else {
+    res.end();
+  }
+  //above moves swimmers
 
 
   next(); // invoke next() at the end of a request to help with testing!
