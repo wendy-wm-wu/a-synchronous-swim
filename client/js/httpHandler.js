@@ -9,7 +9,7 @@
     //do something
     $.ajax({
       type: 'GET',
-      url: serverUrl,
+      url: `${serverUrl}/swim`,
       dataType: 'json',
       success: (data) => {
         console.log(data);
