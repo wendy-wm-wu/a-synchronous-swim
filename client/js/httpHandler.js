@@ -12,7 +12,6 @@
       url: `${serverUrl}/swim`,
       dataType: 'json',
       success: (data) => {
-        console.log(data);
         for (let i = 0; i < data.messageQueue.length; i++) {
           SwimTeam.move(data.messageQueue[i]);
         }
@@ -42,8 +41,10 @@
       contentType: false,
       processData: false,
       success: () => {
-        // reload the page
-        window.location = window.location.href;
+        $('.background').css('background-image', `url('http://127.0.0.1:3000/background.jpg')`);
+      },
+      error: () => {
+        console.log('error');
       }
     });
   };

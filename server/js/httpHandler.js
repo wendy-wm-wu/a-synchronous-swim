@@ -3,6 +3,7 @@ const path = require('path');
 const headers = require('./cors');
 const multipart = require('./multipartUtils');
 const messageQueueModule = require('./messageQueue');
+const { parse } = require('querystring');
 
 // Path for the background image ///////////////////////
 module.exports.backgroundImageFile = path.join('.', 'background.jpg');
@@ -18,7 +19,7 @@ module.exports.router = (req, res, next = ()=>{}) => {
   if (req.method === 'GET') {
     if (req.url === '/background.jpg') {
       let filename = path.join('.', 'spec', 'water-lg.multipart');
-      fs.readFile('/Users/student/code/hrsf122-a-synchronous-swim/server/spec/water-lg.jpg', function(err, fileData) {
+      fs.readFile(module.exports.backgroundImageFile, function(err, fileData) {
         if (err) throw error;
         res.write(fileData);
         res.end();
@@ -44,6 +45,24 @@ module.exports.router = (req, res, next = ()=>{}) => {
       res.writeHead(404, headers);
       res.end();
     }
+  } else if (req.method === 'POST') {
+    res.writeHead(200, headers);
+    let body = new Buffer('');
+    req.on('data', chunk => {
+      body = Buffer.concat([body, chunk]);
+    });
+    req.on('end', () => {
+      // console.log(body);
+      let file = multipart.getFile(body);
+      console.log(file);
+      fs.writeFile(module.exports.backgroundImageFile, file.data, function(err) {
+        if (err) throw err;
+      })
+      res.end('ok');
+    });
+    //grab file
+    //read file
+    //write file into background.jpg
   } else {
     res.writeHead(200, headers);
     res.end();
