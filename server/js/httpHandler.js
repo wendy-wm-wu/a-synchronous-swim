@@ -15,7 +15,7 @@ module.exports.initialize = (queue) => {
 };
 
 module.exports.router = (req, res, next = ()=>{}) => {
-  // console.log('Serving request type ' + req.method + ' for url ' + req.url);
+  console.log('Serving request type ' + req.method + ' for url ' + req.url);
   if (req.method === 'GET') {
     if (req.url === '/background.jpg') {
       let filename = path.join('.', 'spec', 'water-lg.multipart');

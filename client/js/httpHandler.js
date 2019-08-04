@@ -22,7 +22,7 @@
     });
   }
 
-  setInterval(ajaxFetchSwimCommand, 100);
+  // setInterval(ajaxFetchSwimCommand, 10000);
 
 
   /////////////////////////////////////////////////////////////////////
@@ -41,7 +41,8 @@
       contentType: false,
       processData: false,
       success: () => {
-        $('.background').css('background-image', `url('http://127.0.0.1:3000/background.jpg')`);
+        // $('.background').style.backgroundImage = url('http://127.0.0.1:3000/background.jpg');
+        window.location = window.location.href;
       },
       error: () => {
         console.log('error');
